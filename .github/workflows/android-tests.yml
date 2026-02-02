@@ -48,15 +48,15 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-27
+          key: avd-30-google-apis
 
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 27
+          api-level: 30
           target: google_apis
-          arch: x86
+          arch: x86_64
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -67,6 +67,8 @@ jobs:
           mkdir -p apps
           curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o apps/my-demo-app.apk
           ls -lh apps/
+          # Verify APK
+          file apps/my-demo-app.apk
 
       - name: Make Gradlew Executable
         run: chmod +x ./gradlew
@@ -79,7 +81,10 @@ jobs:
           
           echo "=== Verifying Emulator ==="
           adb devices
-          adb shell getprop ro.build.version.release
+          ANDROID_VERSION=$(adb shell getprop ro.build.version.release)
+          echo "Android Version: $ANDROID_VERSION"
+          SDK_VERSION=$(adb shell getprop ro.build.version.sdk)
+          echo "SDK Version: $SDK_VERSION"
           
           echo "=== Starting Appium Server ==="
           appium --log appium.log --address 127.0.0.1 --port 4723 --base-path / &
@@ -103,13 +108,26 @@ jobs:
           done
           
           echo "=== Installing APK ==="
-          adb install -r apps/my-demo-app.apk
-          adb shell pm list packages | grep swaglabs || echo "WARNING: App package not found!"
+          if adb install -r apps/my-demo-app.apk; then
+            echo "SUCCESS: APK installed successfully"
+          else
+            echo "ERROR: Failed to install APK"
+            adb logcat -d | tail -50
+            kill $APPIUM_PID 2>/dev/null || true
+            exit 1
+          fi
+          
+          # Verify installation
+          if adb shell pm list packages | grep -q swaglabs; then
+            echo "SUCCESS: App package verified"
+          else
+            echo "WARNING: App package not found in package list"
+          fi
           
           echo "=== Running Gradle Tests ==="
           ./gradlew clean test \
             -Dapp.path=$(pwd)/apps/my-demo-app.apk \
-            -DplatformVersion=8.1 \
+            -DplatformVersion=$ANDROID_VERSION \
             -DdeviceName="emulator-5554" \
             -Ddevice.udid="emulator-5554" \
             -Dappium.server.url="http://127.0.0.1:4723" \
@@ -130,9 +148,9 @@ jobs:
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 27
+          api-level: 30
           target: google_apis
-          arch: x86
+          arch: x86_64
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
@@ -176,6 +194,7 @@ jobs:
         if: always()
         run: |
           echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           if [ -d "build/test-results/test" ]; then
             echo "✅ Test results directory exists" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
