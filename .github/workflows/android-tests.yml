@@ -32,14 +32,13 @@ jobs:
         run: |
           npm install -g appium
           appium driver install uiautomator2
-          appium --version
-          appium driver list
 
-      - name: Enable KVM
+      - name: KVM Check & Permissions
         run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
+          if [ -e /dev/kvm ]; then
+            sudo chown $USER /dev/kvm
+            echo "KVM is available."
+          fi
 
       - name: AVD cache
         uses: actions/cache@v4
@@ -61,25 +60,6 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
-
-      - name: Download APK
-        run: |
-          mkdir -p apps
-          # Download menggunakan wget dengan follow redirects
-          wget -O apps/my-demo-app.apk https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk
-          
-          # Verify download
-          ls -lh apps/
-          file apps/my-demo-app.apk
-          
-          # Check if it's actually an APK (ZIP format)
-          if file apps/my-demo-app.apk | grep -q "Zip archive\|Android"; then
-            echo "✓ APK downloaded successfully"
-          else
-            echo "✗ Downloaded file is not a valid APK"
-            cat apps/my-demo-app.apk
-            exit 1
-          fi
 
       - name: Make Gradlew Executable
         run: chmod +x ./gradlew
