@@ -45,18 +45,25 @@ public class BaseTest {
 
     private void loadConfig() throws Exception {
         config = new Properties();
-        FileInputStream fis = new FileInputStream(
-                "config.properties"
-        );
-        config.load(fis);
         
-        // Override with system properties if provided
-        for (String key : config.stringPropertyNames()) {
-            String systemValue = System.getProperty(key);
-            if (systemValue != null) {
-                config.setProperty(key, systemValue);
-            }
+        // 1. Load from file
+        try (FileInputStream fis = new FileInputStream("config.properties")) {
+            config.load(fis);
+        } catch (Exception e) {
+            System.out.println("Warning: config.properties not found, reading system properties only.");
         }
+        
+        // 2. Override/Add with EVERY system property that starts with our prefixes
+        System.getProperties().forEach((key, value) -> {
+            String sKey = key.toString();
+            if (sKey.startsWith("app") || 
+                sKey.startsWith("platform") || 
+                sKey.startsWith("device") || 
+                sKey.equals("appium.server.url") ||
+                sKey.contains("automationName")) {
+                config.setProperty(sKey, value.toString());
+            }
+        });
     }
 }
 

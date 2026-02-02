@@ -76,7 +76,7 @@ jobs:
           chmod +x gradlew
           ./gradlew test \
             -Dapp.path=$(pwd)/apps/my-demo-app.apk \
-            -Dapp.activity=com.saucelabs.mydemoapp.android.view.activities.MainActivity \
+            -Dapp.activity=com.saucelabs.mydemoapp.android.view.activities.SplashActivity \
             -Dapp.waitActivity=com.saucelabs.mydemoapp.android.view.activities.* \
             -DplatformVersion=11 \
             -DdeviceName="emulator-5554" \

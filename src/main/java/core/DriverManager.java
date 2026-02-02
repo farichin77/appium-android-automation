@@ -1,43 +1,47 @@
 package core;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
+import io.appium.java_client.android.options.UiAutomator2Options;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 
 public class DriverManager {
 
     public static AndroidDriver createDriver(Properties config) throws Exception {
+        UiAutomator2Options options = new UiAutomator2Options();
 
-        DesiredCapabilities caps = new DesiredCapabilities();
+        options.setPlatformName(config.getProperty("platformName"))
+               .setPlatformVersion(config.getProperty("platformVersion"))
+               .setDeviceName(config.getProperty("deviceName"))
+               .setApp(config.getProperty("app.path"))
+               .setNoReset(true)
+               .setDisableWindowAnimation(true)
+               .setAutoGrantPermissions(true)
+               .setNewCommandTimeout(Duration.ofSeconds(60));
 
-        caps.setCapability("platformName", config.getProperty("platformName"));
-        caps.setCapability("appium:platformVersion", config.getProperty("platformVersion"));
-        caps.setCapability("appium:deviceName", config.getProperty("deviceName"));
-        caps.setCapability("appium:automationName", config.getProperty("automationName"));
-        caps.setCapability("appium:app", config.getProperty("app.path"));
-        
         if (config.getProperty("device.udid") != null && !config.getProperty("device.udid").isEmpty()) {
-            caps.setCapability("appium:udid", config.getProperty("device.udid"));
+            options.setUdid(config.getProperty("device.udid"));
         }
 
-        if (config.getProperty("app.activity") != null) {
-            caps.setCapability("appium:appActivity", config.getProperty("app.activity"));
-        }
-        if (config.getProperty("app.waitActivity") != null) {
-            caps.setCapability("appium:appWaitActivity", config.getProperty("app.waitActivity"));
+        // Handle Activity Configuration
+        String appPackage = config.getProperty("app.package");
+        String appActivity = config.getProperty("app.activity");
+        String appWaitActivity = config.getProperty("app.waitActivity");
+
+        if (appPackage != null) options.setAppPackage(appPackage);
+        if (appActivity != null) options.setAppActivity(appActivity);
+        
+        // Use wildcard or specific wait activity to prevent SplashActivity timeout
+        if (appWaitActivity != null) {
+            options.setAppWaitActivity(appWaitActivity);
         } else {
-            // Default to wildcard to avoid SplashActivity timeout issues
-            caps.setCapability("appium:appWaitActivity", "*");
+            options.setAppWaitActivity("*");
         }
-
-        caps.setCapability("appium:noReset", true);
-        caps.setCapability("appium:disableWindowAnimation", true);
 
         return new AndroidDriver(
                 new URL(config.getProperty("appium.server.url")),
-                caps
+                options
         );
     }
 }
