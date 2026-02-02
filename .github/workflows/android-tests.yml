@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: macos-13
+    runs-on: macos-13 # macOS Intel sangat stabil untuk x86_64 emulator
     timeout-minutes: 45
 
     steps:
@@ -40,36 +40,41 @@ jobs:
           target: google_apis
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-window -gpu hwaccel -no-snapshot -noaudio -no-boot-anim
+          # PERBAIKAN: Menggunakan swiftshader_indirect karena CI tidak punya hardware GPU
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
           script: |
             # Start Appium Server in background
-            appium --log appium.log &
+            appium --log appium.log --address 127.0.0.1 --port 4723 &
             
-            # Wait for Appium to be ready
-            sleep 10
+            # Tunggu Appium sampai benar-benar listen
+            for i in {1..30}; do
+              if nc -z localhost 4723; then
+                echo "Appium server is up!"
+                break
+              fi
+              echo "Waiting for Appium..."
+              sleep 2
+            done
             
-            # Download APK
+            # Download APK (Sauce Labs Demo)
             curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o my-demo-app.apk
             
-            # Run Gradle tests with property overrides
+            # Run Gradle tests
+            # PERBAIKAN: platformVersion harus sama dengan api-level (29 = Android 10)
             ./gradlew test \
               -Dapp.path=$(pwd)/my-demo-app.apk \
               -DplatformVersion=10 \
               -DdeviceName="emulator-5554" \
               -Ddevice.udid="emulator-5554" \
-              -Dappium.server.url="http://localhost:4723"
+              -Dappium.server.url="http://127.0.0.1:4723"
 
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: appium-test-reports
-          path: reports/
-
-      - name: Upload Test Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-test-reports
-          path: reports/
+          name: test-reports
+          path: |
+            build/reports/tests/test/
+            reports/
+            appium.log
