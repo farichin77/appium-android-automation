@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # Hapus cache: 'npm' karena tidak ada package-lock.json
 
       - name: Install Appium & Drivers
         run: |
@@ -82,30 +81,35 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
+            echo "=== Verifying Emulator ==="
             adb devices
             adb shell getprop ro.build.version.release
             
+            echo "=== Starting Appium Server ==="
             appium --log appium.log --address 127.0.0.1 --port 4723 --base-path / &
             APPIUM_PID=$!
+            echo "Appium PID: $APPIUM_PID"
             
-            echo "Waiting for Appium server to start..."
-            for i in {1..30}; do
-              if curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; then
-                echo "✓ Appium server is ready!"
-                break
-              fi
-              if [ $i -eq 30 ]; then
-                echo "✗ Appium server failed to start"
+            echo "=== Waiting for Appium Server ==="
+            RETRY_COUNT=0
+            MAX_RETRIES=30
+            until curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; do
+              RETRY_COUNT=$((RETRY_COUNT+1))
+              if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+                echo "ERROR: Appium server failed to start after $MAX_RETRIES attempts"
                 cat appium.log
                 exit 1
               fi
-              echo "Attempt $i/30: Waiting for Appium..."
+              echo "Waiting for Appium... ($RETRY_COUNT/$MAX_RETRIES)"
               sleep 2
             done
+            echo "SUCCESS: Appium server is ready!"
             
+            echo "=== Installing APK ==="
             adb install -r apps/my-demo-app.apk
-            adb shell pm list packages | grep swaglabs || echo "App not installed!"
+            adb shell pm list packages | grep swaglabs || echo "WARNING: App package not found!"
             
+            echo "=== Running Gradle Tests ==="
             ./gradlew clean test \
               -Dapp.path=$(pwd)/apps/my-demo-app.apk \
               -DplatformVersion=8.1 \
@@ -116,7 +120,11 @@ jobs:
               --info
             
             TEST_EXIT_CODE=$?
-            kill $APPIUM_PID || true
+            
+            echo "=== Stopping Appium Server ==="
+            kill $APPIUM_PID 2>/dev/null || true
+            
+            echo "=== Test execution completed with exit code: $TEST_EXIT_CODE ==="
             exit $TEST_EXIT_CODE
 
       - name: Upload Test Results
