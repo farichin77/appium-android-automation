@@ -22,8 +22,15 @@ test {
         suites 'src/test/resources/testng.xml'
     }
 
-    // Pass all system properties to the test JVM (important for CI overrides)
-    systemProperties System.getProperties()
+    // Pass specific system properties to the test JVM for CI compatibility
+    System.getProperties().each { key, value ->
+        if (key.toString().startsWith("app") || 
+            key.toString().startsWith("platform") || 
+            key.toString().startsWith("device") || 
+            key.toString().equals("appium.server.url")) {
+            systemProperty key.toString(), value.toString()
+        }
+    }
 
     // Print test results
     testLogging {
