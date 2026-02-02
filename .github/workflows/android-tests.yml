@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          # Hapus cache: 'npm' karena tidak ada package-lock.json
 
       - name: Install Appium & Drivers
         run: |
@@ -82,15 +82,12 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            # Verifikasi emulator sudah berjalan
             adb devices
             adb shell getprop ro.build.version.release
             
-            # Start Appium Server di background
             appium --log appium.log --address 127.0.0.1 --port 4723 --base-path / &
             APPIUM_PID=$!
             
-            # Tunggu Appium server ready
             echo "Waiting for Appium server to start..."
             for i in {1..30}; do
               if curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; then
@@ -106,11 +103,9 @@ jobs:
               sleep 2
             done
             
-            # Install APK ke emulator
             adb install -r apps/my-demo-app.apk
             adb shell pm list packages | grep swaglabs || echo "App not installed!"
             
-            # Jalankan tests
             ./gradlew clean test \
               -Dapp.path=$(pwd)/apps/my-demo-app.apk \
               -DplatformVersion=8.1 \
@@ -121,10 +116,7 @@ jobs:
               --info
             
             TEST_EXIT_CODE=$?
-            
-            # Stop Appium server
             kill $APPIUM_PID || true
-            
             exit $TEST_EXIT_CODE
 
       - name: Upload Test Results
