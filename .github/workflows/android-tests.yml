@@ -65,10 +65,21 @@ jobs:
       - name: Download APK
         run: |
           mkdir -p apps
-          curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o apps/my-demo-app.apk
+          # Download menggunakan wget dengan follow redirects
+          wget -O apps/my-demo-app.apk https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk
+          
+          # Verify download
           ls -lh apps/
-          # Verify APK
           file apps/my-demo-app.apk
+          
+          # Check if it's actually an APK (ZIP format)
+          if file apps/my-demo-app.apk | grep -q "Zip archive\|Android"; then
+            echo "✓ APK downloaded successfully"
+          else
+            echo "✗ Downloaded file is not a valid APK"
+            cat apps/my-demo-app.apk
+            exit 1
+          fi
 
       - name: Make Gradlew Executable
         run: chmod +x ./gradlew
@@ -120,8 +131,10 @@ jobs:
           # Verify installation
           if adb shell pm list packages | grep -q swaglabs; then
             echo "SUCCESS: App package verified"
+            adb shell pm list packages | grep swaglabs
           else
             echo "WARNING: App package not found in package list"
+            adb shell pm list packages
           fi
           
           echo "=== Running Gradle Tests ==="
