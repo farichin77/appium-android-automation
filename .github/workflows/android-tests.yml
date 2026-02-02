@@ -1,4 +1,4 @@
-name: Android Appium Tests
+nname: Android Appium Tests
 
 on:
   push:
@@ -27,21 +27,50 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install Appium & Drivers
         run: |
           npm install -g appium
           appium driver install uiautomator2
+          appium --version
+          appium driver list
 
-      - name: KVM Check & Permissions
+      - name: Enable KVM
         run: |
-          # Perbaikan KVM agar emulator bisa jalan cepat di Ubuntu
-          if [ -e /dev/kvm ]; then
-            sudo chown $USER /dev/kvm
-            echo "KVM is available and permissions fixed."
-          else
-            echo "KVM is NOT available, emulator will be slow."
-          fi
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-27
+
+      - name: Create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 27
+          target: google_apis
+          arch: x86
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          script: echo "Generated AVD snapshot for caching."
+
+      - name: Download APK
+        run: |
+          mkdir -p apps
+          curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o apps/my-demo-app.apk
+          ls -lh apps/
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
 
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -49,41 +78,94 @@ jobs:
           api-level: 27
           target: google_apis
           arch: x86
-          force-avd-creation: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            # Start Appium Server
-            appium --log appium.log --address 127.0.0.1 --port 4723 &
+            # Verifikasi emulator sudah berjalan
+            adb devices
+            adb shell getprop ro.build.version.release
             
-            # Wait for Appium
+            # Start Appium Server di background
+            appium --log appium.log --address 127.0.0.1 --port 4723 --base-path / &
+            APPIUM_PID=$!
+            
+            # Tunggu Appium server ready
+            echo "Waiting for Appium server to start..."
             for i in {1..30}; do
-              if nc -z 127.0.0.1 4723; then
-                echo "Appium server is up!"
+              if curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; then
+                echo "✓ Appium server is ready!"
                 break
               fi
-              echo "Waiting for Appium..."
+              if [ $i -eq 30 ]; then
+                echo "✗ Appium server failed to start"
+                cat appium.log
+                exit 1
+              fi
+              echo "Attempt $i/30: Waiting for Appium..."
               sleep 2
             done
             
-            # Download APK
-            curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o my-demo-app.apk
+            # Install APK ke emulator
+            adb install -r apps/my-demo-app.apk
+            adb shell pm list packages | grep swaglabs || echo "App not installed!"
             
-            # Run Gradle tests
-            # API 27 = Android 8.1
-            ./gradlew test \
-              -Dapp.path=$(pwd)/my-demo-app.apk \
+            # Jalankan tests
+            ./gradlew clean test \
+              -Dapp.path=$(pwd)/apps/my-demo-app.apk \
               -DplatformVersion=8.1 \
               -DdeviceName="emulator-5554" \
               -Ddevice.udid="emulator-5554" \
-              -Dappium.server.url="http://127.0.0.1:4723"
+              -Dappium.server.url="http://127.0.0.1:4723" \
+              --stacktrace \
+              --info
+            
+            TEST_EXIT_CODE=$?
+            
+            # Stop Appium server
+            kill $APPIUM_PID || true
+            
+            exit $TEST_EXIT_CODE
 
-      - name: Upload Test Report
+      - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: test-results
+          path: |
+            build/test-results/
+            build/reports/tests/
+
+      - name: Upload Test Report (HTML)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-html
           path: |
             build/reports/tests/test/
             reports/
-            appium.log
+
+      - name: Upload Appium Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-logs
+          path: appium.log
+
+      - name: Upload Screenshots (if any)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots
+          path: |
+            screenshots/
+            build/screenshots/
+
+      - name: Test Summary
+        if: always()
+        run: |
+          echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          if [ -d "build/test-results/test" ]; then
+            echo "Test results directory exists" >> $GITHUB_STEP_SUMMARY
+            find build/test-results/test -name "*.xml" -exec echo "- {}" \; >> $GITHUB_STEP_SUMMARY
+          fi
