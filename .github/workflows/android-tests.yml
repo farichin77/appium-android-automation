@@ -36,21 +36,20 @@ jobs:
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 28
           target: google_apis
-          arch: x86_64
-          force-avd-creation: false
-          emulator-options: -no-window -gpu off -no-snapshot -noaudio -no-boot-anim
+          arch: x86
+          force-avd-creation: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
           script: |
-            # Download APK if not present or use a fixed URL
-            # For this demo, we use the Sauce Labs MyDemoApp APK
+            # Download APK if not present
             curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o my-demo-app.apk
             
             # Run Gradle tests with property overrides
             ./gradlew test \
               -Dapp.path=$(pwd)/my-demo-app.apk \
-              -DplatformVersion=10 \
+              -DplatformVersion=9 \
               -DdeviceName="emulator-5554" \
               -Ddevice.udid="emulator-5554" \
               -Dappium.server.url="http://localhost:4723"
