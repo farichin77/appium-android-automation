@@ -19,18 +19,18 @@ public class BaseTest {
         driver = DriverManager.createDriver(config);
     }
 
-    @AfterMethod
+    @BeforeMethod
     public void resetApp() {
-        driver.terminateApp(config.getProperty("appPackage"));
-        driver.activateApp(config.getProperty("appPackage"));
+        driver.terminateApp(config.getProperty("app.package"));
+        driver.activateApp(config.getProperty("app.package"));
     }
 
     protected void loginValid() {
         new MenuPage(driver)
                 .goToLoginPage()
                 .login(
-                        config.getProperty("username"),
-                        config.getProperty("password")
+                        config.getProperty("valid.username"),
+                        config.getProperty("valid.password")
                 );
     }
 
@@ -46,9 +46,17 @@ public class BaseTest {
     private void loadConfig() throws Exception {
         config = new Properties();
         FileInputStream fis = new FileInputStream(
-                "src/test/resources/config.properties"
+                "config.properties"
         );
         config.load(fis);
+        
+        // Override with system properties if provided
+        for (String key : config.stringPropertyNames()) {
+            String systemValue = System.getProperty(key);
+            if (systemValue != null) {
+                config.setProperty(key, systemValue);
+            }
+        }
     }
 }
 

@@ -72,6 +72,7 @@ public class ExtentReportManager {
     // ================= RESULT LOGGING =================
 
     public static void logResult(ITestResult result) {
+        if (test == null) return;
 
         if (result.getStatus() == ITestResult.SUCCESS) {
             test.pass("Test Passed");

@@ -34,8 +34,9 @@ public class MyCartPage extends BasePage {
         return this;
     }
     //klik tombol process to checkout
-    public void clickProcessToCheckout() {
+    public CheckoutPage clickProcessToCheckout() {
         click(processToCheckoutButton);
+        return new CheckoutPage(driver);
     }
     //klik tombol +
     public MyCartPage clickIncrement() {

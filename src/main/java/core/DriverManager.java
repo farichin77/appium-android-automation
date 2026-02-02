@@ -16,12 +16,17 @@ public class DriverManager {
         caps.setCapability("appium:platformVersion", config.getProperty("platformVersion"));
         caps.setCapability("appium:deviceName", config.getProperty("deviceName"));
         caps.setCapability("appium:automationName", config.getProperty("automationName"));
-        caps.setCapability("appium:app", config.getProperty("appPath"));
+        caps.setCapability("appium:app", config.getProperty("app.path"));
+        
+        if (config.getProperty("device.udid") != null && !config.getProperty("device.udid").isEmpty()) {
+            caps.setCapability("appium:udid", config.getProperty("device.udid"));
+        }
+
         caps.setCapability("appium:noReset", true);
         caps.setCapability("appium:disableWindowAnimation", true);
 
         return new AndroidDriver(
-                new URL(config.getProperty("appiumServer")),
+                new URL(config.getProperty("appium.server.url")),
                 caps
         );
     }

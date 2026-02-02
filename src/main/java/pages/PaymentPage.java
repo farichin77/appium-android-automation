@@ -33,29 +33,43 @@ public class PaymentPage extends BasePage {
         super(driver);
     }
 
+    public PaymentPage enterPaymentInformation(String fullName, String cardNumber, String expirationDate, String securityCode) {
+        inputName(fullName);
+        inputCardNumber(cardNumber);
+        inputExpiryDate(expirationDate);
+        inputCvv(securityCode);
+        return this;
+    }
+
     //input name
-    public void inputName(String name) {
+    public PaymentPage inputName(String name) {
         type(nameField, name);
+        return this;
     }
     //input card number
-    public void inputCardNumber(String cardNumber) {
+    public PaymentPage inputCardNumber(String cardNumber) {
         type(cardNumberField, cardNumber);
+        return this;
     }
     //input expiry date
-    public void inputExpiryDate(String expiryDate) {
+    public PaymentPage inputExpiryDate(String expiryDate) {
         type(expiryDateField, expiryDate);
+        return this;
     }
     //input cvv
-    public void inputCvv(String cvv) {
+    public PaymentPage inputCvv(String cvv) {
         type(cvvField, cvv);
+        return this;
     }
     //klik pay now review order button
-    public void clickReviewOrder() {
+    public PaymentPage clickReviewOrder() {
         click(reviewOrder);
+        return this;
     }
     //klik place order button
-    public void clickPlaceOrder() {
+    public PaymentPage clickPlaceOrder() {
         click(placeOrderButton);
+        return this;
     }
     //get checkout complete page
     public String getCheckoutCompletePage() {

@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Android Appium Execution Summary</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">16 Dec 2025 18:07:11</span></a>
+<a href="#"><span class="badge badge-primary">02 Feb 2026 15:13:53</span></a>
 </li>
 </ul>
 </div>
@@ -45,11 +45,6 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
-</a>
-</li>
-<li class="nav-item dropdown" onclick="toggleView('exception-view')">
-<a id="nav-exception" class="dropdown-toggle" href="#">
-<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('category-view')">
@@ -86,8 +81,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<a class="dropdown-item" status="skip" href="#"><span>Skip</span><span class="status warning"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -101,7 +95,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">Smoke</a>
+<a class="dropdown-item" href="#">General</a><a class="dropdown-item" href="#">Smoke</a><a class="dropdown-item" href="#">Regression</a>
 </ul>
 </li>
 <li class="dropdown">
@@ -113,25 +107,25 @@
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="skip" test-id="1"
           author="Farichin"
           tag="Smoke"
           device="AndroidEmulator">
           <div class="test-detail">
             <p class="name">loginInvalidCredential</p>
             <p class="text-sm">
-              <span>6:07:13 PM</span> / <span>00:00:09:562</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>3:13:55 PM</span> / <span>00:00:00:060</span>
+              <span class="badge skip-bg log float-right">Skip</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">loginInvalidCredential</h5>
-<span class='badge badge-success'>12.16.2025 6:07:13 PM</span>
-<span class='badge badge-danger'>12.16.2025 6:07:22 PM</span>
-<span class='badge badge-default'>00:00:09:562</span>
+<h5 class="test-status text-skip">loginInvalidCredential</h5>
+<span class='badge badge-success'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-default'>00:00:00:060</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -147,16 +141,16 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:07:13 PM</td>
+        <td>3:13:55 PM</td>
         <td>
           Test started
         </td>
       </tr>
       <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>6:07:22 PM</td>
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:55 PM</td>
         <td>
-          Test Passed
+          Test Skipped
         </td>
       </tr>
   </tbody>
@@ -164,25 +158,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="fail" test-id="2"
+        <li class="test-item"  status="skip" test-id="2"
           author="Farichin"
           tag="Smoke"
           device="AndroidEmulator">
           <div class="test-detail">
             <p class="name">loginValidCredential</p>
             <p class="text-sm">
-              <span>6:07:25 PM</span> / <span>00:00:26:507</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>3:13:55 PM</span> / <span>00:00:00:003</span>
+              <span class="badge skip-bg log float-right">Skip</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">loginValidCredential</h5>
-<span class='badge badge-success'>12.16.2025 6:07:25 PM</span>
-<span class='badge badge-danger'>12.16.2025 6:07:52 PM</span>
-<span class='badge badge-default'>00:00:26:507</span>
+<h5 class="test-status text-skip">loginValidCredential</h5>
+<span class='badge badge-success'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-default'>00:00:00:003</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -198,92 +192,832 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>6:07:25 PM</td>
+        <td>3:13:55 PM</td>
         <td>
           Test started
         </td>
       </tr>
       <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>6:07:51 PM</td>
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:55 PM</td>
         <td>
-          Test Failed
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="3"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">addToCart</p>
+            <p class="text-sm">
+              <span>3:13:55 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">addToCart</h5>
+<span class='badge badge-success'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:55 PM</td>
+        <td>
+          Test started
         </td>
       </tr>
       <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>6:07:51 PM</td>
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:55 PM</td>
         <td>
-          <textarea readonly class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.TextView[@content-desc='Product Title' and @text='Sauce Labs Backpack'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.35.0', revision: '1c58e5028b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:app: C:\Users\LENOVO\Downloads\d..., appium:appActivity: com.saucelabs.mydemoapp.and..., appium:appPackage: com.saucelabs.mydemoapp.and..., appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\LENOVO\Downloads\d..., automationName: UiAutomator2, deviceName: emulator-5554, disableWindowAnimation: true, noReset: true, platformName: ANDROID, platformVersion: 11}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2220, appium:deviceUDID: emulator-5554, appium:disableWindowAnimation: true, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 66, appium:takesScreenshot: true, appium:viewportRect: {height: 2154, left: 0, top: 66, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at pages.BasePage.waitFor(BasePage.java:26)
-	at pages.ProductPage.isBackpackVisible(ProductPage.java:62)
-	at tests.LoginTest.loginValidCredential(LoginTest.java:30)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:153)
-	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
-	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72)
-	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
-	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-</textarea>
-          
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="4"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">encreamentProduct</p>
+            <p class="text-sm">
+              <span>3:13:55 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">encreamentProduct</h5>
+<span class='badge badge-success'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:55 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:55 PM</td>
+        <td>
+          Test started
         </td>
       </tr>
       <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>6:07:52 PM</td>
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:55 PM</td>
         <td>
-          
-    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='screenshots/loginValidCredential.png' src="screenshots/loginValidCredential.png">
-    
-    </div></div>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="5"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">decrementProduct</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:007</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">decrementProduct</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:007</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="6"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">removeItemFromCart</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:007</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">removeItemFromCart</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:007</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="7"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">verifyClickIncreament</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:003</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">verifyClickIncreament</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:003</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="8"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">verifyClickDecrement</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:002</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">verifyClickDecrement</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:002</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="9"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">shortByNameAscending</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:002</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">shortByNameAscending</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:002</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="10"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">shortByNameDescending</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:018</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">shortByNameDescending</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:018</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="11"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">shortByPriceAscending</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:003</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">shortByPriceAscending</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:003</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="12"
+          author="Farichin"
+          tag="General"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">shortByPriceDescending</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">shortByPriceDescending</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">General</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="13"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutSuccessTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:002</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutSuccessTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:002</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="14"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutNegativeTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutNegativeTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="15"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutNegativeTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:002</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutNegativeTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:002</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="16"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutNegativeTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutNegativeTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="17"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutNegativeTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:001</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutNegativeTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="skip" test-id="18"
+          author="Farichin"
+          tag="Regression"
+          device="AndroidEmulator">
+          <div class="test-detail">
+            <p class="name">checkoutNegativeTest</p>
+            <p class="text-sm">
+              <span>3:13:56 PM</span> / <span>00:00:00:005</span>
+              <span class="badge skip-bg log float-right">Skip</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-skip">checkoutNegativeTest</h5>
+<span class='badge badge-success'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-danger'>02.02.2026 3:13:56 PM</span>
+<span class='badge badge-default'>00:00:00:005</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Farichin</span>
+<span class="badge badge-pill badge-default">Regression</span>
+<span class="badge badge-pill badge-default">AndroidEmulator</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test started
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log skip-bg">Skip</span></td>
+        <td>3:13:56 PM</td>
+        <td>
+          Test Skipped
         </td>
       </tr>
   </tbody>
@@ -300,26 +1034,26 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view exception-view attributes-view">
+<div class="test-wrapper row view category-view attributes-view">
 <div class="test-list">
 <div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log badge-danger'>1</span>
+<span class='badge log badge-skip'>10</span>
 </span>
-<p class="name">org.openqa.selenium.TimeoutException</p>
-<p class="duration text-sm">1 tests</p>
+<p class="name">General</p>
+<p class="duration text-sm">10 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>org.openqa.selenium.TimeoutException</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<h4>General</h4>
+<span status="skip" class='badge log badge-skip'>10 skipped</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -330,9 +1064,112 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>18:07:25 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>addToCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>encreamentProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>decrementProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>removeItemFromCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>verifyClickIncreament</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>verifyClickDecrement</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='9' id='9'>shortByNameAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='10' id='10'>shortByNameDescending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='11' id='11'>shortByPriceAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='12' id='12'>shortByPriceDescending</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-skip'>2</span>
+</span>
+<p class="name">Smoke</p>
+<p class="duration text-sm">2 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>Smoke</h4>
+<span status="skip" class='badge log badge-skip'>2 skipped</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>loginInvalidCredential</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>loginValidCredential</a>
 </td>
@@ -341,36 +1178,18 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </table>
 </div>
 </li>
-</ul>
-</div>
-</div>
-<div class="test-content scrollable">
-<div class="test-content-detail">
-<div class="detail-body"></div>
-</div>
-</div>
-</div><div class="test-wrapper row view category-view attributes-view">
-<div class="test-list">
-<div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
-</div>
-<div class="test-list-wrapper scrollable">
-<ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
-<span class='badge log badge-danger'>1</span>
+<span class='badge log badge-skip'>6</span>
 </span>
-<p class="name">Smoke</p>
-<p class="duration text-sm">2 tests</p>
+<p class="name">Regression</p>
+<p class="duration text-sm">6 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>Smoke</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<h4>Regression</h4>
+<span status="skip" class='badge log badge-skip'>6 skipped</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -381,18 +1200,46 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>18:07:13 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>loginInvalidCredential</a>
+<a href="#" class="linked" test-id='13' id='13'>checkoutSuccessTest</a>
 </td>
 </tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>18:07:25 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
 <td>
-<a href="#" class="linked" test-id='2' id='2'>loginValidCredential</a>
+<a href="#" class="linked" test-id='14' id='14'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='15' id='15'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='16' id='16'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='17' id='17'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='18' id='18'>checkoutNegativeTest</a>
 </td>
 </tr>
 </tbody>
@@ -418,17 +1265,15 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
-<span class='badge log badge-danger'>1</span>
+<span class='badge log badge-skip'>18</span>
 </span>
 <p class="name">AndroidEmulator</p>
-<p class="duration text-sm">2 tests</p>
+<p class="duration text-sm">18 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
 <h4>AndroidEmulator</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<span status="skip" class='badge log badge-skip'>18 skipped</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -439,18 +1284,130 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>18:07:13 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
 <td>
 <a href="#" class="linked" test-id='1' id='1'>loginInvalidCredential</a>
 </td>
 </tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>18:07:25 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>loginValidCredential</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>addToCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>encreamentProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>decrementProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>removeItemFromCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>verifyClickIncreament</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>verifyClickDecrement</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='9' id='9'>shortByNameAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='10' id='10'>shortByNameDescending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='11' id='11'>shortByPriceAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='12' id='12'>shortByPriceDescending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='13' id='13'>checkoutSuccessTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='14' id='14'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='15' id='15'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='16' id='16'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='17' id='17'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='18' id='18'>checkoutNegativeTest</a>
 </td>
 </tr>
 </tbody>
@@ -476,17 +1433,15 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
-<span class='badge log badge-danger'>1</span>
+<span class='badge log badge-skip'>18</span>
 </span>
 <p class="name">Farichin</p>
-<p class="duration text-sm">2 tests</p>
+<p class="duration text-sm">18 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
 <h4>Farichin</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<span status="skip" class='badge log badge-skip'>18 skipped</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -497,18 +1452,130 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>18:07:13 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
 <td>
 <a href="#" class="linked" test-id='1' id='1'>loginInvalidCredential</a>
 </td>
 </tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>18:07:25 PM</td>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>loginValidCredential</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>addToCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:55 PM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>encreamentProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>decrementProduct</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>removeItemFromCart</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>verifyClickIncreament</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>verifyClickDecrement</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='9' id='9'>shortByNameAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='10' id='10'>shortByNameDescending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='11' id='11'>shortByPriceAscending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='12' id='12'>shortByPriceDescending</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='13' id='13'>checkoutSuccessTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='14' id='14'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='15' id='15'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='16' id='16'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='17' id='17'>checkoutNegativeTest</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="skip">
+<td><span class="badge log skip-bg">Skip</span></td>
+<td>15:13:56 PM</td>
+<td>
+<a href="#" class="linked" test-id='18' id='18'>checkoutNegativeTest</a>
 </td>
 </tr>
 </tbody>
@@ -528,25 +1595,25 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>16 Dec 2025 18:07:11</h3>
+<h3>02 Feb 2026 15:13:53</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>16 Dec 2025 18:08:02</h3>
+<h3>02 Feb 2026 15:13:56</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -562,13 +1629,13 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='50%'>
-<b>1</b> tests passed
+<div><small data-tooltip='0%'>
+<b>0</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='50%'><b>1</b> tests failed,
-<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+<small data-tooltip='0%'><b>0</b> tests failed,
+<b>18</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
 </div>
@@ -585,10 +1652,10 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='16%'><b>1</b> events passed</small></div>
+<div><small data-tooltip='0%'><b>0</b> events passed</small></div>
 <div>
-<small data-tooltip='50%'><b>3</b> events failed,
-<b data-tooltip='%'>2</b> others
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>36</b> others
 </small>
 </div>
 </div>
@@ -604,7 +1671,7 @@ Session ID: 9723bb50-7166-48bc-975b-f369a53298b1
 </div></div>
 <script>
 var timeline = {
-"loginInvalidCredential":9.562,"loginValidCredential":26.507
+"loginInvalidCredential":0.06,"loginValidCredential":0.003,"addToCart":0.001,"encreamentProduct":0.001,"decrementProduct":0.007,"removeItemFromCart":0.007,"verifyClickIncreament":0.003,"verifyClickDecrement":0.002,"shortByNameAscending":0.002,"shortByNameDescending":0.018,"shortByPriceAscending":0.003,"shortByPriceDescending":0.001,"checkoutSuccessTest":0.002,"checkoutNegativeTest":0.001,"checkoutNegativeTest":0.002,"checkoutNegativeTest":0.001,"checkoutNegativeTest":0.001,"checkoutNegativeTest":0.005
 };
 </script>
 <div class="row">
@@ -616,11 +1683,11 @@ var timeline = {
 <tbody>
 <tr>
 <td>Farichin</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
-<td>50%</td>
+<td>18</td>
+<td>0</td>
+<td>0%</td>
 </tr>
 </tbody>
 </table></div>
@@ -632,12 +1699,28 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
+<td>General</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
 <td>Smoke</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
-<td>50%</td>
+<td>2</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Regression</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>0%</td>
 </tr>
 </tbody>
 </table></div>
@@ -651,11 +1734,11 @@ var timeline = {
 <tbody>
 <tr>
 <td>AndroidEmulator</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
-<td>50%</td>
+<td>18</td>
+<td>0</td>
+<td>0%</td>
 </tr>
 </tbody>
 </table></div>
@@ -693,7 +1776,7 @@ var timeline = {
 </tr>
 <tr>
 <td>Execution Time</td>
-<td>16 Dec 2025 18:07:12</td>
+<td>02 Feb 2026 15:13:55</td>
 </tr>
 </tbody>
 </table></div>
@@ -704,10 +1787,10 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 1,
-failParent: 1,
+passParent: 0,
+failParent: 0,
 warningParent: 0,
-skipParent: 0,
+skipParent: 18,
 childCount: 5,
 passChild: 0,
 failChild: 0,
@@ -721,16 +1804,16 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 1,
-failEvents: 3,
+passEvents: 0,
+failEvents: 0,
 warningEvents: 0,
-skipEvents: 0,
-infoEvents: 2
+skipEvents: 18,
+infoEvents: 18
 };
 </script>        </div>
       </div>
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/js/spark-script.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c05cd28cde1617b9d0c05a831daff6cb97fd9fd5/spark/js/spark-script.js"></script>
 <script type="text/javascript"></script></body>
 </html>

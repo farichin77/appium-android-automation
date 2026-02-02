@@ -2,12 +2,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Mobile Automation Suite" verbose="1" parallel="false">
+    <listeners>
+        <listener class-name="core.ExtentTestListener"/>
+    </listeners>
 
     <test name="Appium Android Tests">
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.AddToCartTest"/>
             <class name="tests.RemoveItemTest"/>
+            <class name="tests.ShortbyProductTest"/>
+            <class name="tests.CheckoutFlowTest"/>
         </classes>
     </test>
 </suite>

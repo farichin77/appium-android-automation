@@ -5,7 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 
-public class CekoutPage extends BasePage {
+public class CheckoutPage extends BasePage {
     //locator full name input field
     private final By fullNameField = By.id("com.saucelabs.mydemoapp.android:id/fullNameET");
 
@@ -22,40 +22,59 @@ public class CekoutPage extends BasePage {
     //to payment button
     private final By toPaymentButton = By.id("com.saucelabs.mydemoapp.android:id/paymentBtn");
 
-    public CekoutPage(AndroidDriver driver) {
+    public CheckoutPage(AndroidDriver driver) {
         super(driver);
     }
 
+    public CheckoutPage enterCekoutInformation(String fullName, String address1, String address2, String city, String state, String zip, String country) {
+        inputFullName(fullName);
+        inputAddressLine1(address1);
+        inputAddressLine2(address2);
+        inputCity(city);
+        inputState(state);
+        inputZip(zip);
+        inputCountry(country);
+        return this;
+    }
+
     //input full name
-    public void inputFullName(String fullName) {
+    public CheckoutPage inputFullName(String fullName) {
         type(fullNameField, fullName);
+        return this;
     }
     //input address line 1
-    public void inputAddressLine1(String address1) {
+    public CheckoutPage inputAddressLine1(String address1) {
         type(addressLine1, address1);
+        return this;
     }
     //input address line 2
-    public void inputAddressLine2(String address2) {
+    public CheckoutPage inputAddressLine2(String address2) {
         type(addressLine2, address2);
+        return this;
     }
     //input city
-    public void inputCity(String city) {
+    public CheckoutPage inputCity(String city) {
         type(cityField, city);
+        return this;
     }
     //input state
-    public void inputState(String state) {
+    public CheckoutPage inputState(String state) {
         type(stateField, state);
+        return this;
     }
     //input zip
-    public void inputZip(String zip) {
+    public CheckoutPage inputZip(String zip) {
         type(zipField, zip);
+        return this;
     }
     //input country
-    public void inputCountry(String country) {
+    public CheckoutPage inputCountry(String country) {
         type(countryField, country);
+        return this;
     }
     //klik to payment button
-    public void clickToPayment() {
+    public PaymentPage clickToPayment() {
         click(toPaymentButton);
+        return new PaymentPage(driver);
     }
 }

@@ -14,6 +14,7 @@ public class ScreenshotUtil {
             AndroidDriver driver,
             String testName
     ) {
+        if (driver == null) return null;
         try {
             File src = ((TakesScreenshot) driver)
                     .getScreenshotAs(OutputType.FILE);

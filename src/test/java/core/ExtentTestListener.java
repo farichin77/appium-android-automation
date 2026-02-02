@@ -7,6 +7,11 @@ import utils.ScreenshotUtil;
 public class ExtentTestListener implements ITestListener {
 
     @Override
+    public void onStart(ITestContext context) {
+        ExtentReportManager.initReport();
+    }
+
+    @Override
     public void onTestStart(ITestResult result) {
         ExtentReportManager.createTest(
                 result.getMethod().getMethodName()
