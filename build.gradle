@@ -22,6 +22,9 @@ test {
         suites 'src/test/resources/testng.xml'
     }
 
+    // Pass all system properties to the test JVM (important for CI overrides)
+    systemProperties System.getProperties()
+
     // Print test results
     testLogging {
         events "passed", "skipped", "failed"
