@@ -37,106 +37,14 @@ jobs:
         run: |
           if [ -e /dev/kvm ]; then
             sudo chown $USER /dev/kvm
-            echo "KVM is available."
+            echo "KVM is available and permissions fixed."
           fi
 
-      - name: AVD cache
-        uses: actions/cache@v4
-        id: avd-cache
-        with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: avd-30-google-apis
-
-      - name: Create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: google_apis
-          arch: x86_64
-          force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
-          script: echo "Generated AVD snapshot for caching."
-
-      - name: Make Gradlew Executable
-        run: chmod +x ./gradlew
-
-      - name: Create Test Script
+      - name: Download APK
         run: |
-          cat > run-tests.sh << 'EOF'
-          #!/bin/bash
-          set -e
-          
-          echo "=== Verifying Emulator ==="
-          adb devices
-          ANDROID_VERSION=$(adb shell getprop ro.build.version.release)
-          echo "Android Version: $ANDROID_VERSION"
-          SDK_VERSION=$(adb shell getprop ro.build.version.sdk)
-          echo "SDK Version: $SDK_VERSION"
-          
-          echo "=== Starting Appium Server ==="
-          appium --log appium.log --address 127.0.0.1 --port 4723 --base-path / &
-          APPIUM_PID=$!
-          echo "Appium PID: $APPIUM_PID"
-          
-          echo "=== Waiting for Appium Server ==="
-          for i in $(seq 1 30); do
-            if curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; then
-              echo "SUCCESS: Appium server is ready!"
-              break
-            fi
-            if [ $i -eq 30 ]; then
-              echo "ERROR: Appium server failed to start"
-              cat appium.log
-              kill $APPIUM_PID 2>/dev/null || true
-              exit 1
-            fi
-            echo "Waiting for Appium... ($i/30)"
-            sleep 2
-          done
-          
-          echo "=== Installing APK ==="
-          if adb install -r apps/my-demo-app.apk; then
-            echo "SUCCESS: APK installed successfully"
-          else
-            echo "ERROR: Failed to install APK"
-            adb logcat -d | tail -50
-            kill $APPIUM_PID 2>/dev/null || true
-            exit 1
-          fi
-          
-          # Verify installation
-          if adb shell pm list packages | grep -q swaglabs; then
-            echo "SUCCESS: App package verified"
-            adb shell pm list packages | grep swaglabs
-          else
-            echo "WARNING: App package not found in package list"
-            adb shell pm list packages
-          fi
-          
-          echo "=== Running Gradle Tests ==="
-          ./gradlew clean test \
-            -Dapp.path=$(pwd)/apps/my-demo-app.apk \
-            -DplatformVersion=$ANDROID_VERSION \
-            -DdeviceName="emulator-5554" \
-            -Ddevice.udid="emulator-5554" \
-            -Dappium.server.url="http://127.0.0.1:4723" \
-            --stacktrace \
-            --info
-          
-          TEST_EXIT_CODE=$?
-          
-          echo "=== Stopping Appium Server ==="
-          kill $APPIUM_PID 2>/dev/null || true
-          
-          echo "=== Test execution completed with exit code: $TEST_EXIT_CODE ==="
-          exit $TEST_EXIT_CODE
-          EOF
-          
-          chmod +x run-tests.sh
+          mkdir -p apps
+          curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mda-2.0.1-22.apk -o apps/my-demo-app.apk
+          if [ ! -f apps/my-demo-app.apk ]; then echo "APK download failed"; exit 1; fi
 
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -145,56 +53,36 @@ jobs:
           target: google_apis
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
-          script: bash run-tests.sh
+          script: |
+            # Start Appium Server
+            appium --log appium.log --address 127.0.0.1 --port 4723 &
+            
+            # Wait for Appium
+            for i in {1..30}; do
+              if nc -z 127.0.0.1 4723; then
+                echo "Appium server is up!"
+                break
+              fi
+              echo "Waiting for Appium..."
+              sleep 2
+            done
+            
+            # Run Gradle tests
+            ./gradlew test \
+              -Dapp.path=$(pwd)/apps/my-demo-app.apk \
+              -DplatformVersion=11 \
+              -DdeviceName="emulator-5554" \
+              -Ddevice.udid="emulator-5554" \
+              -Dappium.server.url="http://127.0.0.1:4723"
 
-      - name: Upload Test Results
+      - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: |
-            build/test-results/
-            build/reports/tests/
-
-      - name: Upload Test Report (HTML)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports-html
+          name: test-reports
           path: |
             build/reports/tests/test/
             reports/
-
-      - name: Upload Appium Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-logs
-          path: appium.log
-
-      - name: Upload Screenshots (if any)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: failure-screenshots
-          path: |
-            screenshots/
-            build/screenshots/
-
-      - name: Test Summary
-        if: always()
-        run: |
-          echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -d "build/test-results/test" ]; then
-            echo "✅ Test results directory exists" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### Test Result Files:" >> $GITHUB_STEP_SUMMARY
-            find build/test-results/test -name "*.xml" | while read file; do
-              echo "- \`$file\`" >> $GITHUB_STEP_SUMMARY
-            done
-          else
-            echo "❌ Test results directory not found" >> $GITHUB_STEP_SUMMARY
-          fi
+            appium.log
