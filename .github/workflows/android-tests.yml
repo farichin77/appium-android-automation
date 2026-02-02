@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 45
 
     steps:
@@ -36,11 +36,11 @@ jobs:
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 28
+          api-level: 30
           target: google_apis
-          arch: x86
+          arch: x86_64
           force-avd-creation: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          emulator-options: -no-window -gpu hwaccel -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
           script: |
             # Download APK if not present
@@ -49,7 +49,7 @@ jobs:
             # Run Gradle tests with property overrides
             ./gradlew test \
               -Dapp.path=$(pwd)/my-demo-app.apk \
-              -DplatformVersion=9 \
+              -DplatformVersion=11 \
               -DdeviceName="emulator-5554" \
               -Ddevice.udid="emulator-5554" \
               -Dappium.server.url="http://localhost:4723"
