@@ -9,8 +9,8 @@ on:
 
 jobs:
   test:
-    runs-on: macos-15-intel # Menggunakan runner terbaru yang masih mendukung x86_64
-    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
 
     steps:
       - name: Checkout Code
@@ -33,23 +33,32 @@ jobs:
           npm install -g appium
           appium driver install uiautomator2
 
+      - name: KVM Check & Permissions
+        run: |
+          # Perbaikan KVM agar emulator bisa jalan cepat di Ubuntu
+          if [ -e /dev/kvm ]; then
+            sudo chown $USER /dev/kvm
+            echo "KVM is available and permissions fixed."
+          else
+            echo "KVM is NOT available, emulator will be slow."
+          fi
+
       - name: Run Tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 27
           target: google_apis
-          arch: x86_64
-          force-avd-creation: false
-          # PERBAIKAN: Menggunakan swiftshader_indirect karena CI tidak punya hardware GPU
+          arch: x86
+          force-avd-creation: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
           script: |
-            # Start Appium Server in background
+            # Start Appium Server
             appium --log appium.log --address 127.0.0.1 --port 4723 &
             
-            # Tunggu Appium sampai benar-benar listen
+            # Wait for Appium
             for i in {1..30}; do
-              if nc -z localhost 4723; then
+              if nc -z 127.0.0.1 4723; then
                 echo "Appium server is up!"
                 break
               fi
@@ -57,14 +66,14 @@ jobs:
               sleep 2
             done
             
-            # Download APK (Sauce Labs Demo)
+            # Download APK
             curl -L https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.1/mDemoAppAndroid.apk -o my-demo-app.apk
             
             # Run Gradle tests
-            # PERBAIKAN: platformVersion harus sama dengan api-level (29 = Android 10)
+            # API 27 = Android 8.1
             ./gradlew test \
               -Dapp.path=$(pwd)/my-demo-app.apk \
-              -DplatformVersion=10 \
+              -DplatformVersion=8.1 \
               -DdeviceName="emulator-5554" \
               -Ddevice.udid="emulator-5554" \
               -Dappium.server.url="http://127.0.0.1:4723"
