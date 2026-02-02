@@ -22,6 +22,16 @@ public class DriverManager {
             caps.setCapability("appium:udid", config.getProperty("device.udid"));
         }
 
+        if (config.getProperty("app.activity") != null) {
+            caps.setCapability("appium:appActivity", config.getProperty("app.activity"));
+        }
+        if (config.getProperty("app.waitActivity") != null) {
+            caps.setCapability("appium:appWaitActivity", config.getProperty("app.waitActivity"));
+        } else {
+            // Default to wildcard to avoid SplashActivity timeout issues
+            caps.setCapability("appium:appWaitActivity", "*");
+        }
+
         caps.setCapability("appium:noReset", true);
         caps.setCapability("appium:disableWindowAnimation", true);
 

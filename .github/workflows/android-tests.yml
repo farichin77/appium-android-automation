@@ -77,6 +77,7 @@ jobs:
           ./gradlew test \
             -Dapp.path=$(pwd)/apps/my-demo-app.apk \
             -Dapp.activity=com.saucelabs.mydemoapp.android.view.activities.MainActivity \
+            -Dapp.waitActivity=com.saucelabs.mydemoapp.android.view.activities.* \
             -DplatformVersion=11 \
             -DdeviceName="emulator-5554" \
             -Ddevice.udid="emulator-5554" \
